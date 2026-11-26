@@ -49,9 +49,30 @@ public class Main {
                     System.out.println("Assignment added successfully!");
                     break;
 
+                
                 case "2":
-                    System.out.println("View Assignments - Coming Soon!");
+                    if (assignments.isEmpty()) {
+                        System.out.println("No assignments found.");
+                    } else {
+                        System.out.println("\n=== Your Assignments ===");
+
+                        for (int i = 0; i < assignments.size(); i++) {
+                            Assignment current = assignments.get(i);
+
+                            System.out.println("\nAssignment #" + (i + 1));
+                            System.out.println("Course: " + current.getCourseName());
+                            System.out.println("Assignment: " + current.getAssignmentName());
+                            System.out.println("Due Date: " + current.getDueDate());
+
+                            if (current.isCompleted()) {
+                                System.out.println("Status: Completed");
+                            } else {
+                                System.out.println("Status: Incomplete");
+                            }
+                        }
+                    }
                     break;
+
 
                 case "3":
                     System.out.println("Mark Assignment Complete - Coming Soon!");
