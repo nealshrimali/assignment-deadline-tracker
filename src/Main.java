@@ -1,20 +1,44 @@
-import java.time.LocalDate;
+
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Assignment assignment = new Assignment(
-            "CS193",
-            "Homework 1",
-            LocalDate.of(2026, 12, 1)
-        );
+        Scanner scanner = new Scanner(System.in);
+        boolean running = true;
 
-        System.out.println("Course: " + assignment.getCourseName());
-        System.out.println("Assignment: " + assignment.getAssignmentName());
-        System.out.println("Due Date: " + assignment.getDueDate());
-        System.out.println("Completed: " + assignment.isCompleted());
+        while (running) {
+            System.out.println("\n=== Assignment Deadline Tracker ===");
+            System.out.println("1. Add Assignment");
+            System.out.println("2. View Assignments");
+            System.out.println("3. Mark Assignment Complete");
+            System.out.println("4. Exit");
+            System.out.print("Choose an option (1-4): ");
 
-        assignment.markCompleted();
+            String choice = scanner.nextLine();
 
-        System.out.println("Completed after update: " + assignment.isCompleted());
+            switch (choice) {
+                case "1":
+                    System.out.println("Add Assignment - Coming Soon!");
+                    break;
+
+                case "2":
+                    System.out.println("View Assignments - Coming Soon!");
+                    break;
+
+                case "3":
+                    System.out.println("Mark Assignment Complete - Coming Soon!");
+                    break;
+
+                case "4":
+                    System.out.println("Exiting Assignment Deadline Tracker...");
+                    running = false;
+                    break;
+
+                default:
+                    System.out.println("Invalid option. Please enter 1-4.");
+            }
+        }
+
+        scanner.close();
     }
 }
