@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Comparator;
 
 public class Main {
     public static void main(String[] args) {
@@ -72,12 +73,22 @@ public class Main {
                     if (assignments.isEmpty()) {
                         System.out.println("No assignments found.");
                     } else {
-                        System.out.println("\n=== Your Assignments ===");
+                        // Create a sorted copy of the assignments
+                        ArrayList<Assignment> sortedAssignments =
+                                new ArrayList<>(assignments);
 
-                        for (int i = 0; i < assignments.size(); i++) {
-                            Assignment current = assignments.get(i);
+                        // Sort by due date, earliest first
+                        sortedAssignments.sort(
+                                Comparator.comparing(Assignment::getDueDate)
+                        );
 
-                            System.out.println("\nAssignment #" + (i + 1));
+                        System.out.println("\n=== Your Assignments (Sorted by Due Date) ===");
+
+                        for (int i = 0; i < sortedAssignments.size(); i++) {
+                            Assignment current = sortedAssignments.get(i);
+
+                            int originalIndex = assignments.indexOf(current);
+                            System.out.println("\nAssignment #" + (originalIndex + 1));
                             System.out.println("Course: " + current.getCourseName());
                             System.out.println("Assignment: " + current.getAssignmentName());
                             System.out.println("Due Date: " + current.getDueDate());

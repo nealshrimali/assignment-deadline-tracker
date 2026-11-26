@@ -46,6 +46,7 @@ This project does not use any external APIs or data sources. Assignment informat
 - Save assignments to a CSV file
 - Automatically load saved assignments when the program starts
 - Handle invalid menu selections and date inputs
+- Display assignments sorted by due date, with the earliest deadlines first
 
 ## Current Limitations
 
