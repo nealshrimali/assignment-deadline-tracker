@@ -74,9 +74,52 @@ public class Main {
                     break;
 
 
+                
                 case "3":
-                    System.out.println("Mark Assignment Complete - Coming Soon!");
+                    if (assignments.isEmpty()) {
+                        System.out.println("No assignments available to complete.");
+                        break;
+                    }
+
+                    System.out.println("\n=== Mark Assignment Complete ===");
+
+                    for (int i = 0; i < assignments.size(); i++) {
+                        Assignment current = assignments.get(i);
+
+                        String status = current.isCompleted()
+                                ? "Completed" : "Incomplete";
+
+                        System.out.println((i + 1) + ". "
+                                + current.getAssignmentName()
+                                + " (" + current.getCourseName() + ")"
+                                + " - " + status);
+                    }
+
+                    System.out.print("Enter assignment number to complete: ");
+                    String input = scanner.nextLine();
+
+                    try {
+                        int assignmentNumber = Integer.parseInt(input);
+
+                        if (assignmentNumber < 1 ||
+                                assignmentNumber > assignments.size()) {
+                            System.out.println("Invalid assignment number.");
+                        } else {
+                            Assignment selected =
+                                    assignments.get(assignmentNumber - 1);
+
+                            if (selected.isCompleted()) {
+                                System.out.println("This assignment is already completed.");
+                            } else {
+                                selected.markCompleted();
+                                System.out.println("Assignment marked as completed!");
+                            }
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid input. Please enter a number.");
+                    }
                     break;
+
 
                 case "4":
                     System.out.println("Exiting Assignment Deadline Tracker...");
