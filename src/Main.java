@@ -1,9 +1,13 @@
 
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        ArrayList<Assignment> assignments = new ArrayList<>();
         boolean running = true;
 
         while (running) {
@@ -18,7 +22,31 @@ public class Main {
 
             switch (choice) {
                 case "1":
-                    System.out.println("Add Assignment - Coming Soon!");
+                    System.out.print("Enter course name: ");
+                    String courseName = scanner.nextLine();
+
+                    System.out.print("Enter assignment name: ");
+                    String assignmentName = scanner.nextLine();
+
+                    LocalDate dueDate = null;
+
+                    while (dueDate == null) {
+                        System.out.print("Enter due date (YYYY-MM-DD): ");
+                        String dateInput = scanner.nextLine();
+
+                        try {
+                            dueDate = LocalDate.parse(dateInput);
+                        } catch (DateTimeParseException e) {
+                            System.out.println("Invalid date. Use YYYY-MM-DD.");
+                        }
+                    }
+
+                    Assignment assignment = new Assignment(
+                        courseName, assignmentName, dueDate
+                    );
+
+                    assignments.add(assignment);
+                    System.out.println("Assignment added successfully!");
                     break;
 
                 case "2":
